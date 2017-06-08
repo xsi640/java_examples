@@ -8,14 +8,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.suyang.dao.StudentDao;
 import com.suyang.domain.Student;
 
+@Repository
 public class StudentDaoImpl implements StudentDao {
 
 	private final String GET = "SELECT * FROM Student WHERE id=?";
@@ -24,6 +27,7 @@ public class StudentDaoImpl implements StudentDao {
 	private final String DELETE = "DELETE FROM Student WHERE id=?";
 	private final String SELECT_ALL = "SELECT * FROM Student";
 
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public Student get(int id) {
