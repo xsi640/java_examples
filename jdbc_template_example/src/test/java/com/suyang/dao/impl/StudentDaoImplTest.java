@@ -14,17 +14,20 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.suyang.dao.StudentDao;
 import com.suyang.domain.Student;
+import com.suyang.service.StudentService;
 
 import junit.framework.Assert;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext.xml")  
+@ContextConfiguration("classpath:applicationContext.xml")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class StudentDaoImplTest{
+public class StudentDaoImplTest {
 
 	@Qualifier("StudentDaoImpl")
 	@Autowired
 	private StudentDao studentDao;
+	@Autowired
+	private StudentService studentService;
 
 	@Test
 	public void test1Insert() {
@@ -62,5 +65,18 @@ public class StudentDaoImplTest{
 		List<Student> lists = studentDao.selectAll();
 		Student student = lists.get(0);
 		Assert.assertTrue(studentDao.delete(student.getId()) > 0);
+	}
+
+	@Test
+	public void test6Transactional() {
+		List<Student> lists = studentDao.selectAll();
+		int count = lists.size();
+		try {
+			studentService.insert();
+		} catch (Exception e) {
+		}
+		List<Student> lists1 = studentDao.selectAll();
+		int count1 = lists1.size();
+		Assert.assertEquals(count, count1);
 	}
 }
