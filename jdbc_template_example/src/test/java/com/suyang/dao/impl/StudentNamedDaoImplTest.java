@@ -20,9 +20,9 @@ import junit.framework.Assert;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")  
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class StudentDaoImplTest{
-
-	@Qualifier("StudentDaoImpl")
+public class StudentNamedDaoImplTest {
+	
+	@Qualifier("StudentNamedDaoImpl")
 	@Autowired
 	private StudentDao studentDao;
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.suyang.dao.StudentDao;
 import com.suyang.domain.Student;
 
-@Repository
+@Repository(value="StudentDaoImpl")
 public class StudentDaoImpl implements StudentDao {
 
 	private final String GET = "SELECT * FROM Student WHERE id=?";
