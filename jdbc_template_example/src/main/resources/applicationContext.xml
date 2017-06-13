@@ -10,7 +10,7 @@
 	<!-- 数据库database.properties文件 -->
 	<context:property-placeholder location="classpath:database.properties" ignore-unresolvable="true"/>
 	
-	<!-- spring内置，springJdbc，配置数据源 -->
+	<!-- 配置数据源，使用dbcp2连接池 -->
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${database.driverClassName}" />
