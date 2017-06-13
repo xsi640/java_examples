@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.suyang.dao.StudentDao;
 import com.suyang.domain.Student;
+import com.suyang.service.StudentService;
 
 import junit.framework.Assert;
 
@@ -23,6 +24,8 @@ public class StudentDaoTest{
 
 	@Autowired
 	private StudentDao studentDao;
+	@Autowired
+	private StudentService studentService;
 
 	@Test
 	public void test1Insert() {
@@ -60,5 +63,18 @@ public class StudentDaoTest{
 		List<Student> lists = studentDao.findAll();
 		Student student = lists.get(0);
 		studentDao.delete(student);
+	}
+	
+	@Test
+	public void test6Transactional(){
+		List<Student> lists = studentDao.findAll();
+		int count = lists.size();
+		try {
+			studentService.insert();
+		} catch (Exception e) {
+		}
+		List<Student> lists1 = studentDao.findAll();
+		int count1 = lists1.size();
+		Assert.assertEquals(count, count1);
 	}
 }
