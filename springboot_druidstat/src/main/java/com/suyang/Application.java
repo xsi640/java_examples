@@ -44,8 +44,8 @@ public class Application {
 	 * @return 
 	 */  
 	@Bean  
-	public ServletRegistrationBean DruidStatViewServle2(){  
-	    ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid2/*");  
+	public ServletRegistrationBean DruidStatViewServle(){  
+	    ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");  
 	  
 	    //添加初始化参数：initParams  
 	    /** 白名单，如果不配置或value为空，则允许所有 */  
@@ -66,7 +66,7 @@ public class Application {
 	 * @return 
 	 */  
 	@Bean  
-	public FilterRegistrationBean druidStatFilter2(){  
+	public FilterRegistrationBean druidStatFilter(){  
 	    FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());  
 	  
 	    /** 过滤规则 */  
