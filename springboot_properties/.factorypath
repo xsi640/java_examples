@@ -29,8 +29,8 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-webmvc/4.3.9.RELEASE/spring-webmvc-4.3.9.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-expression/4.3.9.RELEASE/spring-expression-4.3.9.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-configuration-processor/1.5.4.RELEASE/spring-boot-configuration-processor-1.5.4.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="true" runInBatchMode="false"/>
 </factorypath>
