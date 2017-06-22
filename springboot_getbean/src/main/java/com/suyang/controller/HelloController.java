@@ -10,13 +10,21 @@ import com.suyang.beans.TestBean;
 
 @Controller
 public class HelloController {
-	
+
 	@Autowired
 	private SpringUtil springUtil;
-	
-	@RequestMapping("/")
+	@Autowired
+	private TestBean testBean;
+
+	@RequestMapping("/hello")
 	@ResponseBody
 	public String Hello() {
 		return springUtil.getBean(TestBean.class).getName();
+	}
+
+	@RequestMapping("/hello2")
+	@ResponseBody
+	public String Hello2() {
+		return testBean.getName() + " by autowired";
 	}
 }
