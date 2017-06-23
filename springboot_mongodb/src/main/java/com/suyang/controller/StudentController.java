@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,21 +30,12 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/student", method = RequestMethod.POST)
-	public Student create(String id, String name, Integer age, Date birthday) {
-		Student student = new Student();
-		student.setId(id);
-		student.setName(name);
-		student.setAge(age);
-		student.setBirthday(birthday);
+	public Student create(@RequestBody Student student) {
 		return studentRepository.save(student);
 	}
 
 	@RequestMapping(value = "/student", method = RequestMethod.PUT)
-	public Student modify(String id, String name, Integer age, Date birthday) {
-		Student student = studentRepository.findOne(id); 
-		student.setName(name);
-		student.setAge(age);
-		student.setBirthday(birthday);
+	public Student modify(@RequestBody Student student) {
 		return studentRepository.save(student);
 	}
 
