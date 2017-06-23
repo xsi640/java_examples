@@ -35,25 +35,23 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public User create(int id,String name) {
-		User user = new User(id, name);
+	public User create(@RequestBody User user) {
 		userList.add(user);
 		return user;
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)
-	public User modify(final int id, String name) {
+	public User modify(@RequestBody User user) {
 		User existsUser = userList.stream().filter(new Predicate<User>() {
 
 			@Override
 			public boolean test(User u) {
-				return id == u.getId();
+				return user.getId() == u.getId();
 			}
 		}).findFirst().get();
 		if (existsUser != null) {
 			userList.remove(existsUser);
 		}
-		User user = new User(id, name);
 		userList.add(user);
 		return user;
 	}
