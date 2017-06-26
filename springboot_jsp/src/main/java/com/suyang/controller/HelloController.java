@@ -14,7 +14,6 @@ public class HelloController {
 
 	@RequestMapping("/helloJsp")
 	public String helloJsp(Map<String, Object> map) {
-		System.out.println("HelloController.helloJsp().hello=" + hello);
 		map.put("hello", hello);
 		return "helloJsp";
 	}
