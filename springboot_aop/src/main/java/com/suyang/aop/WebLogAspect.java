@@ -21,10 +21,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * 
  * 实现Web层的日志切面
  * 
- * @author Angel(QQ:412887952)
- * 
- * @version v.0.1
- * 
  */
 
 @Aspect
@@ -35,18 +31,21 @@ public class WebLogAspect {
 	private ThreadLocal<Long> startTime = new ThreadLocal<Long>();
 	
 	/**
-	 * 定义一个切入点. 解释下：
+	 * 定义一个切入点
 	 *
-	 * ~ 第一个 * 代表任意修饰符及任意返回值. 
-	 * ~ 第二个 * 任意包名 
-	 * ~ 第三个 * 代表任意方法. 
-	 * ~ 第四个 * 定义在web包或者子包 ~
-	 * ~ 第五个 * 任意方法 ~ .. 匹配任意数量的参数.
+	 * ~ 第1个 * 代表任意修饰符及任意返回值. 
+	 * ~ 第2个 * 任意包名 
+	 * ~ 第3个 * 代表任意方法. 
+	 * ~ .. 匹配任意数量的参数.
 	 */
 	@Pointcut("execution(public * com.suyang.controller.*.*(..))")
 	public void webLog() {
 	}
 
+	/**
+	 * 切入方法之前
+	 * @param joinPoint
+	 */
 	@Before("webLog()")
 	public void doBefore(JoinPoint joinPoint) {
 		 startTime.set(System.currentTimeMillis());
@@ -63,8 +62,7 @@ public class WebLogAspect {
 				+ joinPoint.getSignature().getName());
 		logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
 
-		// 获取所有参数方法一：
-
+		// 获取所有参数
 		Enumeration<String> enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String paraName = (String) enu.nextElement();
@@ -72,6 +70,10 @@ public class WebLogAspect {
 		}
 	}
 
+	/**
+	 * 切入方法之后
+	 * @param joinPoint
+	 */
 	@AfterReturning("webLog()")
 	public void doAfterReturning(JoinPoint joinPoint) {
 		// 处理完请求，返回内容
