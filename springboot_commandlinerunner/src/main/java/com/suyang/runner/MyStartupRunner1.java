@@ -3,9 +3,13 @@ package com.suyang.runner;
 import java.util.Arrays;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * 没有order注解，最后执行 
+ * @author xsi64
+ *
+ */
 @Component
 public class MyStartupRunner1 implements CommandLineRunner {
 

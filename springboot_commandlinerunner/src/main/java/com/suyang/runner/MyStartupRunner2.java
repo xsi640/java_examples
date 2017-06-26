@@ -4,8 +4,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * order由大到小的顺序执行
+ * @author xsi64
+ *
+ */
 @Component
-@Order(value=2)
+@Order(value=4)
 public class MyStartupRunner2 implements CommandLineRunner {
 
 	@Override
