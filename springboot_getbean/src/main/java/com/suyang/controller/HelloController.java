@@ -12,14 +12,12 @@ import com.suyang.beans.TestBean;
 public class HelloController {
 
 	@Autowired
-	private SpringUtil springUtil;
-	@Autowired
 	private TestBean testBean;
 
 	@RequestMapping("/hello")
 	@ResponseBody
 	public String Hello() {
-		return springUtil.getBean(TestBean.class).getName();
+		return SpringUtil.getBean(TestBean.class).getName();
 	}
 
 	@RequestMapping("/hello2")
