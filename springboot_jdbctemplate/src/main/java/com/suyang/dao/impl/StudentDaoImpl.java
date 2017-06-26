@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -26,21 +27,26 @@ public class StudentDaoImpl implements StudentDao {
 	private final String UPDATE = "UPDATE Student SET name=?, age=?, birthday=? WHERE id=?";
 	private final String DELETE = "DELETE FROM Student WHERE id=?";
 	private final String SELECT_ALL = "SELECT * FROM Student";
+	private final String DELETE_ALL = "DELETE FROM Student";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public Student get(int id) {
-		return jdbcTemplate.queryForObject(GET, new Object[] { id }, new RowMapper<Student>() {
-			public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Student s = new Student();
-				s.setId(rs.getInt("id"));
-				s.setName(rs.getString("name"));
-				s.setAge(rs.getInt("age"));
-				s.setBirthday(rs.getDate("birthday"));
-				return s;
-			}
-		});
+		try {
+			return jdbcTemplate.queryForObject(GET, new Object[] { id }, new RowMapper<Student>() {
+				public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Student s = new Student();
+					s.setId(rs.getInt("id"));
+					s.setName(rs.getString("name"));
+					s.setAge(rs.getInt("age"));
+					s.setBirthday(rs.getDate("birthday"));
+					return s;
+				}
+			});
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	public Student insert(final Student s) {
@@ -81,6 +87,10 @@ public class StudentDaoImpl implements StudentDao {
 				return s;
 			}
 		});
+	}
+
+	public int clear() {
+		return jdbcTemplate.update(DELETE_ALL);
 	}
 
 }

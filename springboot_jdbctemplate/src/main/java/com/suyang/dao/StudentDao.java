@@ -14,4 +14,6 @@ public interface StudentDao {
 	int delete(int id);
 
 	List<Student> selectAll();
+	
+	int clear();
 }
