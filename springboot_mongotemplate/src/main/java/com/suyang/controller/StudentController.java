@@ -1,10 +1,10 @@
 package com.suyang.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,21 +29,16 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/student", method = RequestMethod.POST)
-	public Student create(String id, String name, Integer age, Date birthday) {
-		Student student = new Student();
-		student.setId(id);
-		student.setName(name);
-		student.setAge(age);
-		student.setBirthday(birthday);
-		return studentRepository.save(student);
+	public Student create(@RequestBody Student s) {
+		return studentRepository.save(s);
 	}
 
 	@RequestMapping(value = "/student", method = RequestMethod.PUT)
-	public Student modify(String id, String name, Integer age, Date birthday) {
-		Student student = studentRepository.findOne(id); 
-		student.setName(name);
-		student.setAge(age);
-		student.setBirthday(birthday);
+	public Student modify(@RequestBody Student s) {
+		Student student = studentRepository.findOne(s.getId()); 
+		student.setName(s.getName());
+		student.setAge(s.getAge());
+		student.setBirthday(s.getBirthday());
 		return studentRepository.save(student);
 	}
 

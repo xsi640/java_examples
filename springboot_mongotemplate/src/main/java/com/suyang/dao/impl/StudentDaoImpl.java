@@ -40,4 +40,9 @@ public class StudentDaoImpl implements StudentDao {
 		mongoTemplate.remove(query, Student.class);
 	}
 
+	@Override
+	public void deleteAll() {
+		mongoTemplate.dropCollection(Student.class);
+	}
+
 }

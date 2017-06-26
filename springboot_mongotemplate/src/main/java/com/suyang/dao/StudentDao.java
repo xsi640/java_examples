@@ -9,4 +9,5 @@ public interface StudentDao{
 	List<Student> findAll();
 	Student save(Student s);
 	void delete(String id);
+	void deleteAll();
 }
