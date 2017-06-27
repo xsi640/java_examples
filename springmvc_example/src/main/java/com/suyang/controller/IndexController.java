@@ -8,6 +8,7 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String index() {
+		System.out.println(TestUtils.test("123"));
 		return "hello";
 	}
 }
