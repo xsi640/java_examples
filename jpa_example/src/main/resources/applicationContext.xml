@@ -9,7 +9,9 @@
 	http://www.springframework.org/schema/data/jpa
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
     http://www.springframework.org/schema/tx 
-    http://www.springframework.org/schema/tx/spring-tx.xsd ">
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
 
 	<!-- 数据库database.properties文件 -->
 	<context:property-placeholder location="classpath:database.properties"
