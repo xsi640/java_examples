@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.suyang.domain.MessagePackage;
 
@@ -29,17 +28,15 @@ public class TestController {
 	}
 
 	@MessageMapping("/send")
-	@SendTo("/topic/send")
+	@SendTo("/topic/msg")
 	public MessagePackage send(MessagePackage message) throws Exception {
 		System.out.println("receive msg:" + message.getMessage());
 		return new MessagePackage(message.getMessage() + "...ok");
 	}
 
 	@Scheduled(fixedRate = 1000)
-	@SendTo("/topic/callback")
-	public Object callback() throws Exception {
+	public void getTime() throws Exception {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		simpMessagingTemplate.convertAndSend("/topic/callback", df.format(new Date()));
-		return "callback";
+		simpMessagingTemplate.convertAndSend("/topic/time", df.format(new Date()));
 	}
 }

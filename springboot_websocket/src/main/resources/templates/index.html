@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>玩转spring boot——websocket</title>
 <script src="//cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
 <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
@@ -26,14 +25,14 @@
             var socket = new SockJS('/my-websocket');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
-                // 注册发送消息
-                stompClient.subscribe('/topic/send', function(msg) {
+                // 订阅消息
+                stompClient.subscribe('/topic/msg', function(msg) {
                     $scope.data.rows.push(JSON.parse(msg.body));
                     $scope.data.connected = true;
                     $scope.$apply();
                 });
-                // 注册推送时间回调
-                stompClient.subscribe('/topic/callback', function(r) {
+                // 订阅时间
+                stompClient.subscribe('/topic/time', function(r) {
                     $scope.data.time = '当前服务器时间：' + r.body;
                     $scope.data.connected = true;
                     $scope.$apply();
@@ -52,7 +51,7 @@
         }
 
         $scope.send = function() {
-            stompClient.send("/app/send", {}, JSON.stringify({
+            stompClient.send("/publish/send", {}, JSON.stringify({
                 'message' : $scope.data.message
             }));
         }
