@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.253:3306/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 830128suyang
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.suyang.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+## pagehelper分页相关配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
