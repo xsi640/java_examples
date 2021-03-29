@@ -1,0 +1,8 @@
+dependencies {
+    compile "org.apache.commons:commons-dbcp2"
+    compile "com.alibaba:druid:1.0.31"
+    compile "mysql:mysql-connector-java"
+    compile "org.springframework.boot:spring-boot-starter-jdbc"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-test"
+}
